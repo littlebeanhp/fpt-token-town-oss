@@ -1,0 +1,13 @@
+node_modules
+.next
+out
+.wrangler
+.git
+.github
+test-results
+playwright-report
+*.tsbuildinfo
+.env*
+npm-debug.log*
+Dockerfile
+compose.yaml

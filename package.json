@@ -1,0 +1,37 @@
+{
+  "name": "fpt-token-town",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --hostname 0.0.0.0",
+    "build": "next build",
+    "start": "npx --yes serve@14 out --listen 3000",
+    "typecheck": "tsc --noEmit",
+    "optimize:glb": "node scripts/optimize-glb.mjs",
+    "test": "tsx --test tests/*.test.ts",
+    "deploy:cloudflare": "npm run build && npx --yes wrangler@4 deploy",
+    "deploy:docker": "sh scripts/deploy-docker.sh"
+  },
+  "dependencies": {
+    "gsap": "^3.14.0",
+    "lucide-react": "^0.468.0",
+    "next": "^15.5.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "three": "0.186.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.58.2",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/three": "^0.183.0",
+    "pngjs": "^7.0.0",
+    "prettier": "^3.9.8",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.0"
+  },
+  "overrides": {
+    "postcss": "^8.5.23"
+  }
+}

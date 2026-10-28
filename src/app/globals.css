@@ -1,0 +1,808 @@
+/* Local variable font subsets avoid a render-blocking request to Google Fonts. */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('/fonts/dm-sans-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('/fonts/manrope-latin.woff2') format('woff2');
+}
+
+:root {
+  font-family: 'DM Sans', Arial, sans-serif;
+  color: #f6f6fc;
+  background: #171b24;
+  font-synthesis: none;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  overflow: hidden;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+  border: 0;
+}
+button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #beb0ff;
+  outline-offset: 4px;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button svg {
+  flex-shrink: 0;
+}
+.town,
+.town .city-stage {
+  height: 100dvh;
+  min-height: 0;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.scene-host,
+.scene-labels,
+.scene-scrim {
+  position: absolute;
+  inset: 0;
+}
+.scene-host canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+  cursor: grab;
+}
+.scene-labels {
+  pointer-events: none;
+}
+.scene-scrim {
+  pointer-events: none;
+  background: linear-gradient(180deg, #11152166, transparent 27%, transparent 65%, #11152155);
+}
+.town-brand {
+  position: absolute;
+  top: 26px;
+  left: 28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  pointer-events: none;
+  text-shadow: 0 2px 20px #1118;
+}
+.town-emblem {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #9eabff, #424dd4);
+  font-size: 34px;
+  box-shadow: 0 8px 30px #1c235b44;
+}
+h1 {
+  font-family: Manrope, Arial, sans-serif;
+  font-size: 32px;
+  letter-spacing: -1.2px;
+  /* Tight tracking closes up the spaces too, and the title is three words now. */
+  word-spacing: 3px;
+  margin: 0;
+  font-weight: 750;
+}
+.town-brand p {
+  font-size: 12px;
+  color: #e0e2ed;
+  margin: 5px 0 0;
+}
+.platform-link {
+  position: absolute;
+  top: 30px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #e4e6f1;
+  text-shadow: 0 1px 6px #0a0f1c99;
+  border-bottom: 1px solid #ffffff3d;
+  padding-bottom: 2px;
+}
+.platform-link:hover {
+  color: #ffffff;
+  border-bottom-color: #ffffff99;
+}
+.tour-nav {
+  position: absolute;
+  right: 28px;
+  top: 66px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tour-step,
+.home-button,
+.tour-count,
+.clock,
+.model-panel,
+.factory-label {
+  background: #292b3f9c;
+  border: 1px solid #ffffff30;
+  box-shadow: 0 8px 35px #090d1829;
+  backdrop-filter: blur(22px) saturate(125%);
+  -webkit-backdrop-filter: blur(22px) saturate(125%);
+}
+.tour-step,
+.home-button {
+  height: 42px;
+  border-radius: 24px;
+  padding: 0 17px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+.home-button {
+  padding: 0;
+  width: 42px;
+  justify-content: center;
+}
+.tour-count {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 12px;
+  height: 42px;
+  border-radius: 24px;
+  font-size: 12px;
+}
+.tour-step:hover:not(:disabled),
+.home-button:hover:not(:disabled) {
+  background: #53556eaa;
+}
+.model-panel {
+  position: absolute;
+  left: 24px;
+  bottom: 28px;
+  width: 400px;
+  max-width: calc(100% - 48px);
+  padding: 18px 20px 12px;
+  border-radius: 22px;
+  animation: panel-in 0.25s ease;
+}
+.panel-heading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.model-emblem img {
+  width: 26px;
+  height: 24px;
+  object-fit: contain;
+}
+.model-emblem {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #eeeef6;
+  border: 1.5px solid transparent;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.model-category {
+  color: #c9cbd8;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+.model-panel h2 {
+  font-family: Manrope, Arial, sans-serif;
+  font-size: 19px;
+  letter-spacing: -0.5px;
+  margin: 4px 0 0;
+}
+.cached-badge {
+  flex-shrink: 0;
+  white-space: nowrap;
+  margin-left: auto;
+  font-size: 9px;
+  padding: 5px 8px;
+  border: 1px solid #ffffff30;
+  border-radius: 20px;
+  color: #d9dbe8;
+}
+.usage-summary {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 16px 0 12px;
+}
+.usage-summary strong {
+  font-size: 32px;
+  line-height: 1;
+}
+.usage-summary > span {
+  font-size: 12px;
+  color: #e0e1ed;
+}
+.model-stats {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px 20px;
+  border-top: 1px solid #ffffff20;
+  padding-top: 12px;
+  margin: 0;
+}
+.model-stats dt {
+  font-size: 9px;
+  color: #bfc3d2;
+}
+.model-stats dd {
+  font-size: 11px;
+  font-weight: 600;
+  margin: 5px 0;
+  line-height: 1.4;
+}
+.panel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #ffffff18;
+  margin-top: 9px;
+  padding-top: 10px;
+  font-size: 10px;
+  color: #c5cada;
+}
+.panel-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.panel-footer button,
+.panel-actions a {
+  background: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+}
+.status-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #64df92;
+  margin-right: 5px;
+}
+.clock {
+  position: absolute;
+  right: 28px;
+  bottom: 28px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 8px;
+}
+.clock-readout,
+.clock-presets {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+.clock-readout {
+  padding: 0 7px;
+  font-size: 12px;
+}
+.clock-phase {
+  font-size: 9px;
+  text-transform: uppercase;
+  color: #c2c6d4;
+}
+.clock button {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border-radius: 50%;
+  font-size: 11px;
+}
+.clock button.active,
+.clock button:hover {
+  background: #ffffff24;
+}
+.clock-divider {
+  height: 18px;
+  width: 1px;
+  background: #ffffff25;
+}
+.orbit-hint {
+  position: absolute;
+  bottom: 82px;
+  right: 30px;
+  font-size: 10px;
+  color: #e2e3eb;
+  text-shadow: 0 1px 5px #0008;
+  pointer-events: none;
+}
+/* The guide's quest mark: the one object in the city that links out. */
+.host-badge {
+  position: absolute;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 11px 0 9px;
+  border-radius: 13px;
+  border: 1.5px solid #fff5e6;
+  background: linear-gradient(150deg, #f7a53b, #e07a12);
+  color: #fffaf2;
+  font-family: Manrope, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px #b35c0a66;
+  animation: host-bob 2.4s ease-in-out infinite;
+}
+.host-badge strong {
+  font-size: 15px;
+  font-weight: 800;
+}
+.host-badge:hover,
+.host-badge:focus-visible {
+  filter: brightness(1.12);
+  animation-play-state: paused;
+}
+@keyframes host-bob {
+  50% {
+    margin-top: -5px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .host-badge {
+    animation: none;
+  }
+}
+.factory-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 10px;
+  padding: 7px 10px;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.factory-label small {
+  display: none;
+}
+/* The vendor mark replaces the colour dot: the brand is what identifies a house. Marks are not
+   all square, so every slot letterboxes rather than squashing one. */
+.label-mark {
+  width: 17px;
+  height: 16px;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 0.92;
+}
+.label-dot {
+  background: currentColor;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+.loading-screen {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: #202431;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  padding: 24px;
+  font-size: 13px;
+}
+.loading-screen small {
+  color: #acb2c5;
+  font-size: 10px;
+}
+/* Once the first frame exists the city shows through the overlay, so the wait has a view.
+   No backdrop blur here: this layer covers the whole stage for the length of the startup, and
+   recompositing a full-screen filter every frame costs more than the effect is worth exactly
+   when the machine has the least to spare. */
+.loading-screen[data-preview='ready'] {
+  background: #202431f2;
+}
+.loading-title {
+  font-family: Manrope, Arial, sans-serif;
+  font-size: 15px;
+  letter-spacing: -0.3px;
+}
+.loading-stage {
+  color: #dfe3f1;
+  animation: stage-in 0.3s ease both;
+}
+.loading-bar {
+  width: min(260px, 60vw);
+  height: 3px;
+  border-radius: 3px;
+  background: #ffffff1f;
+  overflow: hidden;
+}
+.loading-bar span {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #8c80ed, #b7aefb);
+  transition: width 0.5s ease;
+}
+@keyframes stage-in {
+  from {
+    opacity: 0.25;
+    transform: translateY(3px);
+  }
+}
+.loading-cube {
+  width: 28px;
+  height: 28px;
+  background: #8c80ed;
+  border-radius: 6px;
+  animation: load 2s infinite;
+}
+.primary-button {
+  background: #7165c7;
+  color: white;
+  border-radius: 10px;
+  padding: 10px 16px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes load {
+  50% {
+    transform: rotate(90deg);
+    opacity: 0.5;
+  }
+}
+@media (max-width: 700px) {
+  .town-brand {
+    left: 16px;
+    top: max(16px, env(safe-area-inset-top));
+    gap: 9px;
+  }
+  .town-emblem {
+    width: 34px;
+    height: 34px;
+    font-size: 24px;
+  }
+  h1 {
+    font-size: 23px;
+  }
+  .town-brand p {
+    font-size: 10px;
+  }
+  .platform-link {
+    top: max(18px, env(safe-area-inset-top));
+    right: 16px;
+    font-size: 10px;
+  }
+  .tour-nav {
+    top: 82px;
+    right: 16px;
+    gap: 5px;
+  }
+  .tour-step,
+  .home-button,
+  .tour-count {
+    height: 36px;
+    font-size: 11px;
+  }
+  .tour-step {
+    padding: 0 12px;
+  }
+  .home-button {
+    width: 36px;
+  }
+  .model-panel {
+    left: 12px;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    max-width: calc(100% - 24px);
+    width: 400px;
+    padding: 14px 16px 10px;
+    border-radius: 18px;
+  }
+  .model-panel h2 {
+    font-size: 17px;
+  }
+  .usage-summary {
+    margin: 10px 0;
+  }
+  .usage-summary strong {
+    font-size: 24px;
+  }
+  .clock {
+    bottom: 254px;
+    right: 12px;
+    padding: 4px;
+  }
+  .clock-phase {
+    display: none;
+  }
+  .orbit-hint {
+    display: none;
+  }
+  .factory-label {
+    font-size: 9px;
+  }
+}
+@media (max-height: 520px) and (min-width: 701px) {
+  .model-panel {
+    width: 340px;
+    padding: 12px;
+    bottom: 12px;
+  }
+  .usage-summary {
+    margin: 8px 0;
+  }
+  .town-brand {
+    top: 12px;
+  }
+  .platform-link {
+    top: 14px;
+  }
+  .tour-nav {
+    top: 44px;
+  }
+  .clock {
+    bottom: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *:before,
+  *:after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+.api-dialog {
+  padding: 27px;
+  border: 1px solid #e0e7e2;
+  border-radius: 8px;
+  width: 570px;
+  max-width: calc(100% - 32px);
+  max-height: 90svh;
+  color: #2b4239;
+  background: #f8faf8;
+  box-shadow: 0 20px 100px #0b201d30;
+}
+.api-dialog::backdrop {
+  background: #122b3155;
+  backdrop-filter: blur(7px);
+}
+.dialog-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.api-dialog h2 {
+  font:
+    600 27px Manrope,
+    Arial,
+    sans-serif;
+  margin: 22px 0 10px;
+}
+.api-dialog > p {
+  font-size: 12px;
+  color: #7b8c81;
+}
+.directory-dialog {
+  width: 660px;
+}
+.directory-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0 20px;
+  font-size: 12px;
+}
+.directory-table th,
+.directory-table td {
+  text-align: left;
+  padding: 9px 8px;
+  border-bottom: 1px solid #e3e9e4;
+  vertical-align: middle;
+  font-weight: 400;
+}
+.directory-table thead th {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #899a8e;
+  border-bottom-color: #cdd7cf;
+}
+.directory-table .rank {
+  width: 26px;
+  color: #899a8e;
+  font-variant-numeric: tabular-nums;
+}
+.directory-table tbody th img {
+  width: 24px;
+  height: 22px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.directory-table tbody th button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: none;
+  padding: 0;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+}
+.directory-table tbody th button:hover {
+  color: #0f6b4f;
+}
+.directory-table tbody th small {
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+  color: #7b8c81;
+  margin-top: 2px;
+}
+.directory-table .district {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: #5f7268;
+  white-space: nowrap;
+}
+.directory-table .district .label-dot {
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.directory-table .numeric {
+  text-align: right;
+  width: 190px;
+  font-variant-numeric: tabular-nums;
+}
+.directory-table .numeric strong {
+  font-size: 14px;
+}
+.directory-table .numeric small {
+  display: block;
+  font-size: 9px;
+  color: #7b8c81;
+  margin-top: 3px;
+}
+.share-track {
+  display: block;
+  height: 4px;
+  border-radius: 3px;
+  background: #e3e9e4;
+  margin: 5px 0 0;
+  overflow: hidden;
+}
+.share-fill {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+}
+.directory-table tr.current {
+  background: #eef4ee;
+}
+@media (max-width: 700px) {
+  .directory-table .district {
+    display: none;
+  }
+  .directory-table .numeric {
+    width: 120px;
+  }
+}
+.api-dialog .api-note {
+  font-size: 11px;
+  line-height: 1.7;
+  margin-bottom: 22px;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Frosted nameplates: readable type with a brighter glass edge, underlined in the district's
+   colour so the floating tag and the glass sign on the house read as the same plate. */
+.factory-label {
+  background: linear-gradient(135deg, #dceaff38, #1c293bac 58%, #142032bd);
+  border: 1px solid #f1f8ff66;
+  box-shadow:
+    inset 0 1px 0 #ffffff66,
+    inset 0 -2px 0 var(--model-color),
+    0 8px 24px #08122240;
+  backdrop-filter: blur(24px) saturate(155%);
+  -webkit-backdrop-filter: blur(24px) saturate(155%);
+  border-radius: 14px;
+  padding: 9px 13px;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 3px #08122270;
+}
+
+.price-unit {
+  display: block;
+  font-size: 9px;
+  font-weight: 400;
+  color: #bfc3d2;
+  margin-top: 2px;
+}
+.status-pending {
+  opacity: 0.35;
+}
+@media (max-width: 700px) {
+  .panel-heading {
+    flex-wrap: wrap;
+  }
+  .cached-badge {
+    margin-left: 52px;
+  }
+  .panel-footer {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .clock {
+    bottom: calc(var(--panel-height, 250px) + max(12px, env(safe-area-inset-bottom)) + 12px);
+  }
+}

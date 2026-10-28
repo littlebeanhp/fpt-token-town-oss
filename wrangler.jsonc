@@ -1,0 +1,18 @@
+// Cloudflare Worker serves the Next.js export and a shared presence Durable Object.
+// Deploy with `npm run deploy:cloudflare`, or let the GitHub Action deploy pushes to main.
+{
+  "name": "fpt-token-town",
+  "compatibility_date": "2026-09-01",
+  "main": "worker/index.js",
+  "durable_objects": {
+    "bindings": [{ "name": "TOWN_PRESENCE", "class_name": "TownPresence" }],
+  },
+  "migrations": [{ "tag": "v1-presence", "new_sqlite_classes": ["TownPresence"] }],
+  "assets": {
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"],
+    "directory": "./out",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash",
+  },
+}

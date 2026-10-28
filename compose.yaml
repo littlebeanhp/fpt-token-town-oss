@@ -1,0 +1,9 @@
+# Run the city on any machine with Docker: `docker compose up -d --build`,
+# then open http://localhost:8080.
+services:
+  web:
+    build: .
+    image: fpt-token-town:latest
+    ports:
+      - '8080:8080'
+    restart: unless-stopped
